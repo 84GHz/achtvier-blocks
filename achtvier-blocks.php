@@ -25,6 +25,16 @@ add_filter( 'block_categories', function( $categories, $post ) {
 	);
 }, 10, 2 );
 
+//plugin update checker
+require 'plugin-update-checker/plugin-update-checker.php';
+$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
+	'https://github.com/84GHz/achtvier-blocks/',
+	__FILE__,
+	'achtvier-blocks'
+);
+
+
+
 include_once( plugin_dir_path( __FILE__ ) . 'blocks/achtvier-betteraccordeon.php');
 include_once( plugin_dir_path( __FILE__ ) . 'blocks/achtvier-bettertabs.php');
 include_once( plugin_dir_path( __FILE__ ) . 'blocks/bar-counter.php');
