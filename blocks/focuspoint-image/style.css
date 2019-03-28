@@ -1,0 +1,40 @@
+.wp-block-achtvier-focuspoint-image {
+  width: 100%;
+  height: 60rem; }
+  .wp-block-achtvier-focuspoint-image p {
+    padding-top: 1rem; }
+  .wp-block-achtvier-focuspoint-image h2, .wp-block-achtvier-focuspoint-image h3, .wp-block-achtvier-focuspoint-image h4, .wp-block-achtvier-focuspoint-image h5 {
+    padding-top: 0.5rem;
+    color: #fff; }
+  .wp-block-achtvier-focuspoint-image h3 {
+    font-size: 5rem; }
+  .wp-block-achtvier-focuspoint-image .focuspoint-inner-wrapper {
+    width: 100%;
+    height: 100%; }
+    .wp-block-achtvier-focuspoint-image .focuspoint-inner-wrapper img {
+      max-width: unset;
+      width: unset; }
+  .wp-block-achtvier-focuspoint-image .sliderinfo-wrapper {
+    position: absolute;
+    bottom: 0;
+    left: 20%;
+    width: 40%; }
+  .wp-block-achtvier-focuspoint-image .atv-hlb {
+    margin: 0 auto;
+    bottom: 0;
+    max-width: 80%;
+    color: #fff;
+    padding: 2rem;
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 60%;
+    left: 12%;
+    text-align: center;
+    padding: 6rem  2rem; }
+    .wp-block-achtvier-focuspoint-image .atv-hlb h3 {
+      font-size: 1.5rem;
+      font-family: NeutrafaceText-Light; }
+    .wp-block-achtvier-focuspoint-image .atv-hlb p {
+      padding-top: 1rem; }
+
+.owl-carousel .wp-block-achtvier-focuspoint-image .focuspoint-inner-wrapper img {
+  width: unset; }

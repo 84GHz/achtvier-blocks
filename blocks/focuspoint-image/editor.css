@@ -1,0 +1,12 @@
+/**
+ * #.# Editor Styles
+ *
+ * CSS for just Backend enqueued after style.scss
+ * which makes it higher in priority.
+ */
+.wp-block-achtvier-overlay-tile .overlay-wrapper {
+  min-height: 5rem; }
+
+.wp-block-achtvier-overlay-tile .counterlabel-textwrapper {
+  position: absolute;
+  top: 0; }

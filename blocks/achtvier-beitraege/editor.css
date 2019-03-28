@@ -1,0 +1,36 @@
+/**
+ * #.# Editor Styles
+ *
+ * CSS for just Backend enqueued after style.scss
+ * which makes it higher in priority.
+ */
+.wp-block-achtvier-blocks-bettertabs {
+  background: #dedede;
+  border: 0.2rem solid #000;
+  color: #000;
+  margin: 0 auto;
+  max-width: 740px;
+  padding: 2rem; }
+
+.wp-block-achtvier-blocks-bettertabs .avgb-tabs-panel li {
+  list-style-type: none; }
+
+.wp-block-achtvier-blocks-bettertabs .bettertabs-tab {
+  background-color: #90EE90;
+  border: 1px solid #fff;
+  float: left;
+  padding: 0.1rem; }
+
+.wp-block-achtvier-blocks-bettertabs .bettertabs-tab a {
+  float: left;
+  padding: 0 0.3rem; }
+
+.wp-block-achtvier-blocks-bettertabs .bettertabs-tab svg {
+  margin-top: 5px; }
+
+.wp-block-achtvier-blocks-bettertabs .avgb-tab-body {
+  clear: left;
+  background-color: #fff;
+  border-color: grey;
+  margin-top: 1rem;
+  min-height: 5rem; }

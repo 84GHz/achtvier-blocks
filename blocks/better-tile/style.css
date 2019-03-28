@@ -1,0 +1,55 @@
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+.wp-block-achtvier-better-tile:hover .linkoverlay {
+  height: 25%;
+  transition: height 0.15s ease-in; }
+  .wp-block-achtvier-better-tile:hover .linkoverlay a {
+    opacity: 1;
+    transition: all 0.15s ease-in; }
+
+.wp-block-achtvier-better-tile:hover .linkoverlay {
+  background: rgba(255, 255, 255, 0.7); }
+
+.wp-block-achtvier-better-tile:hover .linkoverlay:after, .wp-block-achtvier-better-tile:hover .linkoverlay:before {
+  bottom: 100%;
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none; }
+
+.wp-block-achtvier-better-tile:hover .linkoverlay:before {
+  border-color: rgba(255, 255, 255, 0);
+  border-bottom-color: rgba(255, 255, 255, 0.7);
+  border-width: 12px;
+  margin-left: -12px; }
+
+.wp-block-achtvier-better-tile {
+  margin: 0 auto; }
+  .wp-block-achtvier-better-tile .kachel-inner-wrapper {
+    min-height: 18.1rem;
+    padding: 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+    .wp-block-achtvier-better-tile .kachel-inner-wrapper > p, .wp-block-achtvier-better-tile .kachel-inner-wrapper h2 {
+      width: 100%; }
+  .wp-block-achtvier-better-tile .linkoverlay {
+    height: 0;
+    transition: height 0.15s ease-out;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center; }
+    .wp-block-achtvier-better-tile .linkoverlay a {
+      color: #000;
+      opacity: 0; }

@@ -1,0 +1,76 @@
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+
+
+
+ .wp-block-achtvier-better-tile:hover  {
+   .linkoverlay {
+     height: 25%;
+     transition: height 0.15s ease-in;
+     a {
+       opacity: 1;
+       transition: all 0.15s ease-in;
+
+     }
+   }
+   .linkoverlay {
+  background: rgba(255,255,255,0.7);
+  //border: 1px solid #c2e1f5;
+ }
+ .linkoverlay:after, .linkoverlay:before {
+  bottom: 100%;
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+ }
+
+
+ .linkoverlay:before {
+  border-color: rgba(255,255,255,0);
+  border-bottom-color: rgba(255,255,255,0.7);
+  border-width: 12px;
+  margin-left: -12px;
+ }
+ }
+
+ .wp-block-achtvier-better-tile  {
+   margin: 0 auto;
+   .kachel-inner-wrapper {
+     min-height: 18.1rem;
+   padding:  0;
+   position: relative;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   > p, h2 {
+     width: 100%;
+   }
+   }
+
+    .linkoverlay {
+      // höhe on hover
+      height:0;
+      transition: height 0.15s ease-out;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background-color: rgba(255,255,255,0.7);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      a {
+        color: #000;
+        //sichtbar erst on hover
+        opacity: 0;
+      }
+    }
+
+ }

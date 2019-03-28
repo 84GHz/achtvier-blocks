@@ -1,0 +1,23 @@
+.wp-block-achtvier-overlay-tile {
+  position: relative;
+  .linkoverlay {
+    position: absolute;
+
+    top: 0;
+    p {
+      padding-top: 0;
+    }
+    img {
+      width: 100%;
+    }
+
+  }
+}
+.wp-block-achtvier-overlay-tile {
+  .linkoverlay {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+
+  }
+}
