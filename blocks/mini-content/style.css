@@ -1,0 +1,15 @@
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+.wp-block-achtvierblocks-better-mini-content {
+  padding: 1rem; }
+  .wp-block-achtvierblocks-better-mini-content img {
+    width: 100%; }
+  .wp-block-achtvierblocks-better-mini-content p {
+    max-width: 20rem;
+    padding: 0 1rem; }
+  .wp-block-achtvierblocks-better-mini-content h3 {
+    max-width: 20rem;
+    padding: 1rem; }

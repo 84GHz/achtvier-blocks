@@ -12,45 +12,47 @@
  *
  * @see https://wordpress.org/gutenberg/handbook/blocks/writing-your-first-block-type/#enqueuing-block-scripts
  */
-function achtvier_betteraccordeon_block_init() {
+function mini_content_block_init() {
 	// Skip block registration if Gutenberg is not enabled/merged.
 	if ( ! function_exists( 'register_block_type' ) ) {
 		return;
 	}
 	$dir = dirname( __FILE__ );
 
-	$index_js = 'achtvier-betteraccordeon/index.js';
+	$index_js = 'mini-content/index.js';
 	wp_register_script(
-		'achtvier-betteraccordeon-block-editor',
+		'mini-content-block-editor',
 		plugins_url( $index_js, __FILE__ ),
 		array(
 			'wp-blocks',
 			'wp-i18n',
 			'wp-element',
+			'wp-components',
+			'wp-editor',
 		),
 		filemtime( "$dir/$index_js" )
 	);
 
-	$editor_css = 'achtvier-betteraccordeon/editor.css';
+	$editor_css = 'mini-content/editor.css';
 	wp_register_style(
-		'achtvier-betteraccordeon-block-editor',
+		'mini-content-block-editor',
 		plugins_url( $editor_css, __FILE__ ),
 		array(),
 		filemtime( "$dir/$editor_css" )
 	);
 
-	$style_css = 'achtvier-betteraccordeon/style.css';
+	$style_css = 'mini-content/style.css';
 	wp_register_style(
-		'achtvier-betteraccordeon-block',
+		'mini-content-block',
 		plugins_url( $style_css, __FILE__ ),
 		array(),
 		filemtime( "$dir/$style_css" )
 	);
 
-	register_block_type( 'achtvier-blocks/achtvier-betteraccordeon', array(
-		'editor_script' => 'achtvier-betteraccordeon-block-editor',
-		'editor_style'  => 'achtvier-betteraccordeon-block-editor',
-		'style'         => 'achtvier-betteraccordeon-block',
+	register_block_type( 'achtvier-blocks/mini-content', array(
+		'editor_script' => 'mini-content-block-editor',
+		'editor_style'  => 'mini-content-block-editor',
+		'style'         => 'mini-content-block',
 	) );
 }
-add_action( 'init', 'achtvier_betteraccordeon_block_init' );
+add_action( 'init', 'mini_content_block_init' );

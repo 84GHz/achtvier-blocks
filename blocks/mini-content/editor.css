@@ -1,0 +1,15 @@
+/**
+ * #.# Editor Styles
+ *
+ * CSS for just Backend enqueued after style.scss
+ * which makes it higher in priority.
+ */
+.wp-block-achtvierblocks-better-mini-content {
+  background: #fff;
+  border: 0.1rem dotted #000;
+  color: #000;
+  margin: 0 auto;
+  max-width: 300px;
+  padding: 1rem; }
+  .wp-block-achtvierblocks-better-mini-content img {
+    width: 100%; }
