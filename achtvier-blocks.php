@@ -25,11 +25,22 @@ add_filter( 'block_categories', function( $categories, $post ) {
 	);
 }, 10, 2 );
 
+//plugin update checker
+require 'plugin-update-checker/plugin-update-checker.php';
+$myUpdateChecker = Puc_v4_Factory::buildUpdateChecker(
+	'https://github.com/84GHz/achtvier-blocks/',
+	__FILE__,
+	'achtvier-blocks'
+);
+
+
 
 include_once( plugin_dir_path( __FILE__ ) . 'blocks/achtvier-betteraccordeon.php');
+include_once( plugin_dir_path( __FILE__ ) . 'blocks/mini-content.php');
 include_once( plugin_dir_path( __FILE__ ) . 'blocks/achtvier-bettertabs.php');
 include_once( plugin_dir_path( __FILE__ ) . 'blocks/bar-counter.php');
-include_once( plugin_dir_path( __FILE__ ) . 'blocks/icon-counter.php');
 include_once( plugin_dir_path( __FILE__ ) . 'blocks/better-tile.php');
-include_once( plugin_dir_path( __FILE__ ) . 'blocks/fancy-latest-posts.php');
-include_once( plugin_dir_path( __FILE__ ) . 'blocks/newsticker.php');
+include_once( plugin_dir_path( __FILE__ ) . 'blocks/overlay-tile.php');
+include_once( plugin_dir_path( __FILE__ ) . 'blocks/one-fifth-col.php');
+include_once( plugin_dir_path( __FILE__ ) . 'blocks/new-accordion.php');
+include_once( plugin_dir_path( __FILE__ ) . 'blocks/focuspoint-image.php');

@@ -31,8 +31,6 @@ function bar_counter_block_init() {
 		filemtime( "$dir/$index_js" )
 	);
 
-
-
 	$editor_css = 'bar-counter/editor.css';
 	wp_register_style(
 		'bar-counter-block-editor',

@@ -18,7 +18,6 @@
 		MediaUpload,
 
 	} = wp.editor;
-
 	const { Button, TextControl, RangeControl	,PanelBody, ToggleControl, TextControls, ColorPicker } = wp.components;
 	const { Fragment } = wp.element;
 
@@ -230,33 +229,6 @@
 												onChange={onCounterHeightChange}
 												min={ 0 }
 												max={ 200 }
-											/>
-											<RangeControl
-												label="counter multiplicator"
-												value={ attributes.counterMultiplier }
-												onChange={onCounterMultiplierChange}
-												min={ 0 }
-												max={ 10000 }
-											/>
-											<RangeControl
-												label="counter border"
-												value={ attributes.borderWidth }
-												onChange={onBorderWidthChange}
-												min={ 0 }
-												max={ 50 }
-											/>
-											<label>Border Color</label>
-											<ColorPicker
-												color= { attributes.borderColor }
-												onChangeComplete={ onBorderColorChange }
-												disableAlpha
-											/>
-											<RangeControl
-												label="Animation Speed"
-												value={ attributes.animationSpeed }
-												onChange={onAnimationSpeedChange}
-												min={ 1 }
-												max={ 1000 }
 											/>
 										<RangeControl
 											label="counterBegin"
