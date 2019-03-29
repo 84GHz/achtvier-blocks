@@ -43,4 +43,5 @@ include_once( plugin_dir_path( __FILE__ ) . 'blocks/better-tile.php');
 include_once( plugin_dir_path( __FILE__ ) . 'blocks/overlay-tile.php');
 include_once( plugin_dir_path( __FILE__ ) . 'blocks/one-fifth-col.php');
 include_once( plugin_dir_path( __FILE__ ) . 'blocks/new-accordion.php');
+include_once( plugin_dir_path( __FILE__ ) . 'blocks/new-newsticker.php');
 include_once( plugin_dir_path( __FILE__ ) . 'blocks/focuspoint-image.php');
