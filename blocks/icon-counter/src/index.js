@@ -35,7 +35,7 @@
 	 * @return {?WPBlock}          The block, if it has been successfully
 	 *                             registered; otherwise `undefined`.
 	 */
-	registerBlockType( 'achtvier/bar-counter', {
+	registerBlockType( 'achtvier/icon-counter', {
 		// Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-block.
 		title: __( 'Counter Tab' ), // Block title.
 		category: 'achtvier-blocks', // Block category — Group blocks together based on common traits E.g. common, formatting, layout widgets, embed.
@@ -47,23 +47,15 @@
 
 			counterBegin: {
 				type: 'number',
-				default: 0
+				default: 1
 	    },
 			counterEnd: {
 				type: 'number',
-				default: 50
+				default: 20
 	    },
-			counterLabel: {
-				type: 'string',
-				default: "%"
-	    },
-			counterMultiplier: {
+			counterStep: {
 				type: 'number',
 				default: 1
-	    },
-			animationSpeed: {
-				type: 'number',
-				default: 10
 			},
 			bgColor: {
 				type: 'string',
@@ -85,18 +77,28 @@
 				type: 'number',
 				default: 11
 			},
-			counterHeight : {
+			iconWidth : {
 				type: 'number',
 				default: 50
+			},
+			iconRightMargin : {
+				type: 'number',
+				default: 10
+			},
+			animationSpeed : {
+				type: 'number',
+				default: 10
 			},
 			startDelay : {
 				type: 'number',
 				default: 0
 			},
-			fontColor: {
-				type: 'string',
-				default: '#fff'
-			},
+		  mediaID: {
+  			type: 'number',
+		  },
+		  mediaURL: {
+  			type: 'string',
+      },
 		},
 
 		/**
@@ -129,21 +131,13 @@
 							counterEnd: changes
 					});
 			}
-			function onCounterMultiplierChange(changes) {
+
+			function onCounterStepChange(changes) {
 					setAttributes({
-							counterMultiplier: changes
+							counterStep: changes
 					});
 			}
-			function onAnimationSpeedChange(changes) {
-					setAttributes({
-							animationSpeed: changes
-					});
-			}
-			function onCounterLabelChange(changes) {
-					setAttributes({
-							counterLabel: changes
-					});
-			}
+
 			function onStartDelayChange(changes) {
 					setAttributes({
 							startDelay: changes
@@ -156,30 +150,42 @@
 							bgColor: changes.hex
 					});
 			}
+			function onAnimationSpeedChange(changes) {
+					setAttributes({
+							animationSpeed: changes
+					});
+			}
 			function onfgcolorChange(changes) {
 
 					setAttributes({
 							fgColor: changes.hex
 					});
 			}
-			function onFontcolorChange(changes) {
-					setAttributes({
-							fontColor: changes.hex
-					});
-			}
+
 			function onBorderColorChange(changes) {
 					setAttributes({
 							borderColor: changes.hex
 					});
+			}
+			function onSelectImage( media ) {
+				setAttributes( {
+					mediaURL: media.url,
+					mediaID: media.id,
+				} );
 			}
 			function onBorderWidthChange(changes) {
 					setAttributes({
 							borderWidth: changes
 					});
 			}
-			function onCounterHeightChange(changes) {
+			function onIconWidthChange(changes) {
 					setAttributes({
-							counterHeight: changes
+							iconWidth: changes
+					});
+			}
+			function onRightMarginChange(changes) {
+					setAttributes({
+							iconRightMargin: changes
 					});
 			}
 			function onCounterPaddingChange(changes) {
@@ -190,20 +196,56 @@
 			const fgStyle = {
 				backgroundColor: attributes.fgColor,
 				width: attributes.counterEnd + "%"
-			}
+			};
 			const bgStyle = {
 				backgroundColor: attributes.bgColor,
 				height: attributes.counterHeight,
+			};
+
+
+			const getIcons = ( number, iconfile ,width, rightmargin) => {
+				if (typeof(iconfile)=="undefined" ) {
+					return null;
+				}
+
+				let counter = []
+				let children = []
+				for (let i = 0; i < number; i++) {
+
+							children.push(<span
+								style={{
+									marginRight: rightmargin
+								}}
+								><img className={"icon-counter-icon"}
+							src = {iconfile}
+							style={{width: width + "px"}}
+							/></span>);
+					}
+					counter.push(<div className={"icon-counter-inner"}>{children}</div>);
+					return counter
 			}
+			const getImageButton = (openEvent) => {
+				return (
+					<div className="button-container">
+						<Button
+							onClick={ openEvent }
+								className="button button-large"
+				 			>
+					 		Icon
+				 		</Button>
+			 		</div>
+		 		);
+			};
 			return (
 				<Fragment>
 				<InspectorControls>
 					<PanelBody title={ __( 'Counter bar settings' ) }>
-						<TextControl
-							label={ __( 'Counter Bar Label' ) }
-							value={ attributes.counterLabel }
-							onChange={ onCounterLabelChange }
-						/>
+					<MediaUpload
+						onSelect={ onSelectImage }
+						type="image"
+						value={ props.attributes.mediaID }
+						render={ ({ open }) => getImageButton(open) }
+					/>
 									<label>Hintergrundfarbe</label>
 	   				        <ColorPicker
 									     color= { bgColor }
@@ -218,25 +260,19 @@
 									    onChangeComplete={ onfgcolorChange }
 											disableAlpha
 									  />
-										<label>Textfarbe</label>
-											<ColorPicker
-												color= { attributes.fontColor }
-												onChangeComplete={ onFontcolorChange }
-												disableAlpha
-											/>
 											<RangeControl
-												label="counterHeight"
-												value={ attributes.counterHeight }
-												onChange={onCounterHeightChange}
+												label="Icon width"
+												value={ attributes.iconWidth }
+												onChange={onIconWidthChange}
 												min={ 0 }
 												max={ 200 }
 											/>
 											<RangeControl
-												label="counter multiplicator"
-												value={ attributes.counterMultiplier }
-												onChange={onCounterMultiplierChange}
+												label="Right Margin"
+												value={ attributes.iconRightMargin }
+												onChange={onRightMarginChange}
 												min={ 0 }
-												max={ 10000 }
+												max={ 200 }
 											/>
 											<RangeControl
 												label="counter border"
@@ -255,7 +291,7 @@
 												label="Animation Speed"
 												value={ attributes.animationSpeed }
 												onChange={onAnimationSpeedChange}
-												min={ 1 }
+												min={ 10 }
 												max={ 1000 }
 											/>
 										<RangeControl
@@ -295,28 +331,10 @@
 					border: attributes.borderWidth + "px solid " + attributes.borderColor
 				}}
 				>
-				  <div className="counter-wrapper">
-					<div className="outerbar" style = {bgStyle}>
-					<div className="innerBar"
-					style = {
-						fgStyle
-					}>
+						{getIcons(attributes.counterEnd, attributes.mediaURL, attributes.iconWidth, attributes.iconRightMargin)}
+						<label>icon-counter</label>
 					</div>
-					</div>
-
-					<div className="counterlabel-textwrapper"
-						style = {{ color: attributes.fontColor,
-							padding: attributes.counterPadding + "px"
-						}}
-					>
-						{attributes.counterEnd * attributes.counterMultiplier}{attributes.counterLabel}
-					</div>
-					</div>
-
-				</div>
 				</Fragment>
-
-
 			);
 		},
 
@@ -339,12 +357,33 @@
 				backgroundColor: props.attributes.bgColor,
 				height: props.attributes.counterHeight,
 			}
+			const getIcons2 = ( number, iconfile ,width, rightmargin) => {
+				if (typeof(iconfile)=="undefined" ) {
+					return null;
+				}
 
+				let counter = []
+				let children = []
+				for (let i = 0; i < number; i++) {
+
+							children.push(<span
+								style={{
+									marginRight: rightmargin
+								}}
+								><img className={"icon-counter-icon"}
+							src = {iconfile}
+							style={{width: width + "px"}}
+							/></span>);
+					}
+					counter.push(<div className={"icon-counter-inner"}>{children}</div>);
+					return counter
+			}
 
 			return (
 				<div className={props.className}
 				style={{
-					border: props.attributes.borderWidth + "px solid " + props.attributes.borderColor
+					border: props.attributes.borderWidth + "px solid " + props.attributes.borderColor,
+					backgroundColor: props.attributes.bgColor
 				}}
 				data-delay={props.attributes.startDelay}
 				data-step={props.attributes.counterStep}
@@ -353,26 +392,13 @@
 				data-counterend={props.attributes.counterEnd}
 				data-animationspeed={props.attributes.animationSpeed}
 				data-counterdelay={props.attributes.dataDelay}
+				data-countericon={props.attributes.mediaURL}
+				data-countericonwidth={props.attributes.iconWidth}
+				data-iconmargin={props.attributes.iconRightMargin}
 				>
-					<div className="counter-wrapper">
-					<div className="outerbar" style = {bgStyle}>
-					<div className="innerBar"
-					style = {
-						fgStyle }
-						dangerouslySetInnerHTML={{__html: '&nbsp;'}}
-					/>
-					</div>
-
-					<div className="counterlabel-textwrapper"
-						style = {{ color: props.attributes.fontColor,
-							padding: props.attributes.counterPadding + "px"
-						}}
-					>
-					  <span className="counter-number">
-						{props.attributes.counterBegin * props.attributes.counterMultiplier}
-						</span>{props.attributes.counterLabel}
-					</div>
-					</div>
+ 				<div className="icon-counter-wrapper">
+	   			{getIcons2(props.attributes.counterBegin, props.attributes.mediaURL, props.attributes.iconWidth, props.attributes.iconRightMargin)}
+				</div>
 
 				</div>
 	)

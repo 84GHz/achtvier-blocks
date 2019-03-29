@@ -1,0 +1,33 @@
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+
+.fancy-post-col {
+  margin-bottom: 5rem;
+  padding: 0 2rem;
+  margin-left: auto;
+  margin-right: auto;
+  p {
+    margin-bottom: 0;
+  }
+  .fancy-latest-posts-thumb {
+    height: 10rem;
+
+  }
+  .achtvier-beitrag-header {
+    a {
+      font-size: 1.5rem;
+    }
+  }
+}
+@media screen and (max-width: 768px) {
+  .fancy-latest-posts-thumb, .fancy-post-col.col-md-4  {
+    display: none;
+
+  }
+  .fancy-post-col {
+    margin-bottom: 1rem;
+  }
+}
