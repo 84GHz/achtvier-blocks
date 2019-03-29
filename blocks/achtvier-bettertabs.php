@@ -27,6 +27,8 @@ function achtvier_bettertabs_block_init() {
 			'wp-blocks',
 			'wp-i18n',
 			'wp-element',
+			'wp-components',
+			'wp-editor'
 		),
 		filemtime( "$dir/$index_js" )
 	);
