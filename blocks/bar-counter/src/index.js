@@ -313,7 +313,6 @@
 			}
 
 
-			}
 			return (
 				<div className={props.className}
 				style={{
@@ -351,7 +350,3 @@
 	)
 		},
 	} );
-
-} )(
-	window.wp
-);

@@ -43,7 +43,7 @@
      if($i % 2 == 0) {
        $list_items_markup .= '<div class="col-sm-6 col-xl-3 fancy-post-col col-md-4">';
         $list_items_markup .= sprintf(
-           '<a href="%2$s"><div class="fancy-latest-posts-thumb" style = "background-image:url(\'%1$s\')">;</div></a>',
+           '<a href="%2$s"><div class="fancy-latest-posts-thumb" style = "background-image:url(\'%1$s\')">&nbsp;</div></a>',
          $thumbnail_url,
          esc_url( get_permalink( $post_id ) )
         );
@@ -103,7 +103,7 @@
        $list_items_markup .= '<div class="col-sm-6 col-xl-3 fancy-post-col col-md-4">';
 
         $list_items_markup .= sprintf(
-          '<a href="%2$s"><div class="fancy-latest-posts-thumb" style = "background-image:url(\'%1$s\')">;</div></a>',
+          '<a href="%2$s"><div class="fancy-latest-posts-thumb" style = "background-image:url(\'%1$s\')">&nbsp;</div></a>',
          esc_url(get_the_post_thumbnail_url( $post_id, 'medium' )),
          esc_url( get_permalink( $post_id ) )
         );

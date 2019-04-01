@@ -1,6 +1,17 @@
-.wp-block-achtvier-blocks-bar-counter .innerBar {
+.wp-block-achtvier-bar-counter .innerBar {
   height: 100%; }
 
-.wp-block-achtvier-blocks-bar-counter .counterlabel-textwrapper {
+.wp-block-achtvier-bar-counter .counterlabel-textwrapper {
   position: absolute;
   top: 0; }
+
+.wp-block-achtvier-bar-counter .counter-wrapper {
+  position: relative; }
+
+.wp-block-achtvier-counter-wrapper {
+  min-height: 20px;
+  padding: 1rem;
+  border: 1px dotted #000; }
+  .wp-block-achtvier-counter-wrapper label {
+    background-color: #0085ba;
+    color: #fff; }

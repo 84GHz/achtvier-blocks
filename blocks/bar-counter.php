@@ -53,4 +53,13 @@ function bar_counter_block_init() {
 		'style'         => 'bar-counter-block',
 	) );
 }
+
+function bar_counter_launch() {
+    wp_enqueue_script( 'bar-counter-launch', plugins_url('/bar-counter/assets/counter-launch.js', __FILE__), array('jquery')  );
+		//d(plugins_url('/blocks/bar-counter/assets/counter-launch.js', __FILE__));
+
+}
+add_action('init', 'bar_counter_launch');
+
+
 add_action( 'init', 'bar_counter_block_init' );

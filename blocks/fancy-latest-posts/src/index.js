@@ -12,11 +12,8 @@ const {
 	PanelBody,
 	Placeholder,
 	QueryControls,
-	RangeControl,
-	Spinner,
 	ToggleControl,
 	Toolbar,
-	TextControl
 } = wp.components;
 const {
 	InspectorControls,
@@ -79,11 +76,8 @@ registerBlockType( 'achtvier-blocks/fancy-latest-posts', {
 					<QueryControls
 						{ ...{ order, orderBy } }
 						numberOfItems={ postsToShow }
-						categoriesList={ categoriesList }
-						selectedCategoryId={ categories }
 						onOrderChange={ ( value ) => setAttributes( { order: value } ) }
 						onOrderByChange={ ( value ) => setAttributes( { orderBy: value } ) }
-						onCategoryChange={ ( value ) => setAttributes( { categories: '' !== value ? value : undefined } ) }
 						onNumberOfItemsChange={ ( value ) => setAttributes( { postsToShow: value } ) }
 					/>
 				</PanelBody>
