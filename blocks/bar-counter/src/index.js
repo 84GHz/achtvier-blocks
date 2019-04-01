@@ -6,7 +6,7 @@
  */
 
 //  Import CSS.
-( function( wp ) {
+		import './wrapperblock.js';
 	const { __ } = wp.i18n; // Import __() from wp.i18n
 	const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
 	const {
@@ -34,10 +34,11 @@
 	 * @return {?WPBlock}          The block, if it has been successfully
 	 *                             registered; otherwise `undefined`.
 	 */
-	registerBlockType( 'achtvier-blocks/bar-counter', {
+	registerBlockType( 'achtvier/bar-counter', {
 		// Block name. Block names must be string that contains a namespace prefix. Example: my-plugin/my-custom-block.
 		title: __( 'Counter Tab' ), // Block title.
 		category: 'achtvier-blocks', // Block category — Group blocks together based on common traits E.g. common, formatting, layout widgets, embed.
+		parent: ['achtvier/counter-wrapper'],
 		keywords: [
 			__( 'counter tab' ),
 		],
@@ -49,18 +50,39 @@
 	    },
 			counterEnd: {
 				type: 'number',
-				default: 100
+				default: 50
 	    },
 			counterLabel: {
 				type: 'string',
+				default: "%"
 	    },
+			counterMultiplier: {
+				type: 'number',
+				default: 1
+	    },
+			animationSpeed: {
+				type: 'number',
+				default: 10
+			},
 			bgColor: {
 				type: 'string',
-				default: ''
+				default: '#fff2f2'
 			},
 			fgColor: {
 				type: 'string',
-				default: ''
+				default: '#fd8a8a'
+			},
+			borderWidth: {
+				type: 'number',
+				default: 0
+			},
+			borderColor: {
+				type: 'string',
+				default: "#000"
+			},
+			counterPadding: {
+				type: 'number',
+				default: 11
 			},
 			counterHeight : {
 				type: 'number',
@@ -72,7 +94,7 @@
 			},
 			fontColor: {
 				type: 'string',
-				default: ''
+				default: '#fff'
 			},
 		},
 
@@ -106,6 +128,16 @@
 							counterEnd: changes
 					});
 			}
+			function onCounterMultiplierChange(changes) {
+					setAttributes({
+							counterMultiplier: changes
+					});
+			}
+			function onAnimationSpeedChange(changes) {
+					setAttributes({
+							animationSpeed: changes
+					});
+			}
 			function onCounterLabelChange(changes) {
 					setAttributes({
 							counterLabel: changes
@@ -116,6 +148,8 @@
 							startDelay: changes
 					});
 			}
+
+
 			function onBgColorChange(changes) {
 					setAttributes({
 							bgColor: changes.hex
@@ -132,9 +166,24 @@
 							fontColor: changes.hex
 					});
 			}
+			function onBorderColorChange(changes) {
+					setAttributes({
+							borderColor: changes.hex
+					});
+			}
+			function onBorderWidthChange(changes) {
+					setAttributes({
+							borderWidth: changes
+					});
+			}
 			function onCounterHeightChange(changes) {
 					setAttributes({
 							counterHeight: changes
+					});
+			}
+			function onCounterPaddingChange(changes) {
+					setAttributes({
+							counterPadding: changes
 					});
 			}
 			const fgStyle = {
@@ -143,7 +192,7 @@
 			}
 			const bgStyle = {
 				backgroundColor: attributes.bgColor,
-				height: attributes.counterHeight
+				height: attributes.counterHeight,
 			}
 			return (
 				<Fragment>
@@ -196,6 +245,13 @@
 											max={ 100 }
 										/>
 										<RangeControl
+											label="counter padding"
+											value={ attributes.counterPadding }
+											onChange={onCounterPaddingChange}
+											min={ 0 }
+											max={ 100 }
+										/>
+										<RangeControl
 											label="startDelay"
 											value={ startDelay }
 											onChange={onStartDelayChange}
@@ -206,22 +262,29 @@
 					</PanelBody>
 				</InspectorControls>
 
-				<div className={props.className}>
-			      <div className="outerbar" style = {bgStyle}>
-						<div className="innerBar"
-						style = {
-							fgStyle
-						}>
-						</div>
-						</div>
+				<div className={props.className}
+				style={{
+					border: attributes.borderWidth + "px solid " + attributes.borderColor
+				}}
+				>
+				  <div className="counter-wrapper">
+					<div className="outerbar" style = {bgStyle}>
+					<div className="innerBar"
+					style = {
+						fgStyle
+					}>
+					</div>
+					</div>
 
-						<div className="counterlabel-textwrapper"
-						  style = {{ color: attributes.fontColor,
-								padding: (attributes.counterHeight / 4) + "px"
-							}}
-						>
-							{attributes.counterEnd}{attributes.counterLabel}
-						</div>
+					<div className="counterlabel-textwrapper"
+						style = {{ color: attributes.fontColor,
+							padding: attributes.counterPadding + "px"
+						}}
+					>
+						{attributes.counterEnd * attributes.counterMultiplier}{attributes.counterLabel}
+					</div>
+					</div>
+
 				</div>
 				</Fragment>
 
@@ -238,33 +301,53 @@
 		 * @link https://wordpress.org/gutenberg/handbook/block-api/block-edit-save/
 		 */
 		save: function( props ) {
-			const getLinkOverlay = () => {
-				if (props.attributes.showLinkOverlay) {
-					return (
-						<div className="linkoverlay">
-				      <a href={ props.attributes.linkURL } className="kachel-overlay-link">{ props.attributes.linkText }</a>
-						</div>
-					);
-				}
-				else return null;
+			const attributes = {props};
+			const fgStyle = {
+				//we begin with begin after all
+				backgroundColor: props.attributes.fgColor,
+				width: props.attributes.counterBegin + "%"
+			}
+			const bgStyle = {
+				backgroundColor: props.attributes.bgColor,
+				height: props.attributes.counterHeight,
+			}
 
-			};
+
+			}
 			return (
-		<div className={props.className}
-		style={{
-				backgroundImage: "url('" + props.attributes.mediaURL + "')",
-				backgroundSize: 'cover',
-				backgroundPosition: 'center'
-		}}>
+				<div className={props.className}
+				style={{
+					border: props.attributes.borderWidth + "px solid " + props.attributes.borderColor
+				}}
+				data-delay={props.attributes.startDelay}
+				data-step={props.attributes.counterStep}
+				data-counterbegin={props.attributes.counterBegin}
+				data-multplier={props.attributes.counterMultiplier}
+				data-counterend={props.attributes.counterEnd}
+				data-animationspeed={props.attributes.animationSpeed}
+				data-counterdelay={props.attributes.dataDelay}
+				>
+					<div className="counter-wrapper">
+					<div className="outerbar" style = {bgStyle}>
+					<div className="innerBar"
+					style = {
+						fgStyle }
+						dangerouslySetInnerHTML={{__html: '&nbsp;'}}
+					/>
+					</div>
 
-		 <div className="kachel-inner-wrapper">
-		   <div className="inside-wrapper">
-			 <InnerBlocks.Content />
-			 </div>
-			 { getLinkOverlay() }
-		 </div>
+					<div className="counterlabel-textwrapper"
+						style = {{ color: props.attributes.fontColor,
+							padding: props.attributes.counterPadding + "px"
+						}}
+					>
+					  <span className="counter-number">
+						{props.attributes.counterBegin * props.attributes.counterMultiplier}
+						</span>{props.attributes.counterLabel}
+					</div>
+					</div>
 
-		</div>
+				</div>
 	)
 		},
 	} );
