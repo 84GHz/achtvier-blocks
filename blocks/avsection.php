@@ -12,16 +12,16 @@
  *
  * @see https://wordpress.org/gutenberg/handbook/blocks/writing-your-first-block-type/#enqueuing-block-scripts
  */
-function bar_counter_block_init() {
+function avsection_block_init() {
 	// Skip block registration if Gutenberg is not enabled/merged.
 	if ( ! function_exists( 'register_block_type' ) ) {
 		return;
 	}
 	$dir = dirname( __FILE__ );
 
-	$index_js = 'bar-counter/index.js';
+	$index_js = 'avsection/index.js';
 	wp_register_script(
-		'bar-counter-block-editor',
+		'avsection-block-editor',
 		plugins_url( $index_js, __FILE__ ),
 		array(
 			'wp-blocks',
@@ -31,26 +31,26 @@ function bar_counter_block_init() {
 		filemtime( "$dir/$index_js" )
 	);
 
-	$editor_css = 'bar-counter/editor.css';
+	$editor_css = 'avsection/editor.css';
 	wp_register_style(
-		'bar-counter-block-editor',
+		'avsection-block-editor',
 		plugins_url( $editor_css, __FILE__ ),
 		array(),
 		filemtime( "$dir/$editor_css" )
 	);
 
-	$style_css = 'bar-counter/style.css';
+	$style_css = 'avsection/style.css';
 	wp_register_style(
-		'bar-counter-block',
+		'avsection-block',
 		plugins_url( $style_css, __FILE__ ),
 		array(),
 		filemtime( "$dir/$style_css" )
 	);
 
-	register_block_type( 'achtvier-blocks/bar-counter', array(
-		'editor_script' => 'bar-counter-block-editor',
-		'editor_style'  => 'bar-counter-block-editor',
-		'style'         => 'bar-counter-block',
+	register_block_type( 'achtvier-blocks/avsection', array(
+		'editor_script' => 'avsection-block-editor',
+		'editor_style'  => 'avsection-block-editor',
+		'style'         => 'avsection-block',
 	) );
 }
-add_action( 'init', 'bar_counter_block_init' );
+add_action( 'init', 'avsection_block_init' );

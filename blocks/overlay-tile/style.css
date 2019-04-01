@@ -11,4 +11,25 @@
 .wp-block-achtvier-overlay-tile .linkoverlay {
   height: 100%;
   width: 100%;
-  overflow: hidden; }
+  overflow: hidden;
+  padding: 15px; }
+
+.wp-block-achtvier-overlay-tile .overlay-inner-wrapper {
+  width: 100%;
+  height: 100%; }
+
+.linkoverlay:hover .overlay-inner-wrapper {
+  background-color: rgba(0, 0, 0, 0.6);
+  -webkit-transition: .7s ease;
+  transition: .7s ease; }
+
+.linkoverlay a, .linkoverlay p {
+  opacity: 0;
+  -webkit-transition: .7s ease;
+  transition: .7s ease; }
+
+.linkoverlay:hover a, .linkoverlay:hover p {
+  color: #fff;
+  opacity: 1;
+  -webkit-transition: .7s ease;
+  transition: .7s ease; }

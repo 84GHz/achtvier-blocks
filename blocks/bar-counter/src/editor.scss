@@ -1,21 +1,9 @@
-.wp-block-achtvier-bar-counter {
+.wp-block-achtvier-blocks-bar-counter {
   .innerBar {
     height:100%;
   }
   .counterlabel-textwrapper {
     position: absolute;
     top: 0;
-  }
-  .counter-wrapper {
-    position: relative;
-  }
-}
-.wp-block-achtvier-counter-wrapper {
-  min-height:20px;
-  padding:1rem;
-  border: 1px dotted #000;
-  label {
-    background-color: #0085ba;
-    color: #fff;
   }
 }

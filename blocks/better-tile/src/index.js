@@ -159,7 +159,7 @@ const {
 						onChange={ onLinkTextChange }
 					/>
 								<label>Hintergrundfarbe</label>
-								
+
 				        <ColorPicker
 								value= { attributes.bgColor }
 								onChange={ onBgColorChange }

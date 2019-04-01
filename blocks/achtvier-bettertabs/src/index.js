@@ -7,6 +7,7 @@
 
 //  Import CSS.
 import './tab.js';
+import { times, property, omit } from 'lodash';
 
 //import memoize from 'memize';
 const { __ } = wp.i18n; // Import __() from wp.i18n
